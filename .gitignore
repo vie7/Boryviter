@@ -1,0 +1,9 @@
+script.txt
+plan.txt
+project_diary.txt
+*_test.py
+__pycache__
+*.jpg
+*.mp4
+wetland/
+old_data/

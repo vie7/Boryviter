@@ -1,0 +1,29 @@
+[project]
+name = "bird_tracker"
+version = "0.1.0"
+description = "Learning tracking on a little ornithology project"
+readme = "README.md"
+requires-python = "==3.11.*"
+dependencies = [
+    "ipython>=9.13.0",
+    "librosa>=0.11.0",
+    "matplotlib>=3.10.9",
+    "numpy>=1.24,<2",
+    "pandas>=3.0.2",
+    "pandas-stubs~=3.0.2",
+    "sounddevice>=0.5.5",
+    "torch>=2.0.1",
+    "torchaudio>=2.0.2",
+    "torchinfo>=1.8.0",
+]
+
+[build-system]
+
+[tool.hatch.build.targets.wheel]
+
+[tool.uv]
+environments = ["sys_platform == 'linux'"]
+
+[tool.uv.sources]
+torch =      { url = "https://download.pytorch.org/whl/cu132" }
+torchaudio = { url = "https://download.pytorch.org/whl/cu118/torchaudio-2.0.2%2Bcu118-cp311-cp311-linux_x86_64.whl" }
