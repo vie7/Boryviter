@@ -7,3 +7,5 @@ __pycache__
 *.mp4
 wetland/
 old_data/
+*_check.py
+check.py

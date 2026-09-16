@@ -1,33 +1,28 @@
 """
-Обробляти....ааа слово for Boryviter
-
+Processing data for Boryviter
 Turning different data sources into one common format.
 
 What the script does:
-1. Extract frame image from the source video at each annotated frame number.
 
-2. Convert box format:
+1. Convert box format:
     Boryviter detector's anchors regress center + size (x_center, y_center, w, h)
     w = x2 - x1
     h = y2 - y1
     x_center = x1 + w/2
     y_center = y1 + h/2
 
-3. Collapse to one class: drop the species label, every box is "bird"
+2. Collapse to one class: drop the species label, every box is "bird"
 
-4. Normalize to fractions of the frame: 
+3. Normalize to fractions of the frame: 
     image width = x_center/width
     image_height = y_center/height
     Boxes are still valid after resizing frame to the network's input
 
-5. Assign each box to its grid cell + best-matching anchor
-
-Behavior_id andd subject_id are unnecessary
+4. Assign each box to its grid cell + best-matching anchor
 
 """
 
 import csv
-import os
 import ast
 from collections import defaultdict
 import random
@@ -53,9 +48,6 @@ CSV_PATH = "wetland/bounding_boxes.csv"
 VIDEOS_DIR = "wetland/videos"
 FRAMES_ROOT = "wetland/frames"
 
-
-
-
 """
 Wetland:
 species_id;species;video_name;frame;bounding_boxes
@@ -63,7 +55,6 @@ species_id;species;video_name;frame;bounding_boxes
                                     [(X_max,Y_max,X_min,Y_min,Behavior_id,Bird_id)]
 """
 
-# https://en.wikipedia.org/wiki/Jaccard_index
 def box_iou(w1, h1, w2, h2):
     # IoU of two boxes centered on the same point, shape comparison to decide which anchor a ground-truth box belongs to
     inter = min(w1, w2) * min(h1, h2)
